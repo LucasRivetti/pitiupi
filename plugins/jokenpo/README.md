@@ -61,13 +61,13 @@ Tem uma classe só, a `JokenpoMensagem`, com estes campos:
 
 ### Tipos de mensagem
 
-| Tipo | Quando é enviada |
-|---|---|
-| CONVITE | alguém clicou em Desafiar |
-| ACEITO | o convidado aceitou |
+| Tipo     | Quando é enviada                                                        |
+| -------- | ------------------------------------------------------------------------ |
+| CONVITE  | alguém clicou em Desafiar                                               |
+| ACEITO   | o convidado aceitou                                                      |
 | RECUSADO | o convidado recusou, ou já estava em outra partida (aí recusa sozinho) |
-| JOGADA | cada jogador manda a sua em cada rodada |
-| ENCERRAR | alguém desistiu ou cancelou o convite |
+| JOGADA   | cada jogador manda a sua em cada rodada                                  |
+| ENCERRAR | alguém desistiu ou cancelou o convite                                   |
 
 ### Como uma partida acontece
 
@@ -94,14 +94,7 @@ Cada jogador sempre está em um destes estados: LIVRE, CONVITE_ENVIADO, CONVITE_
 - Se a mensagem não tem o meu id no `para`, ignoro.
 - Se é de outra partida ou de outra rodada, também ignoro.
 - Se chega um convite enquanto eu já estou jogando, respondo RECUSADO automático e continuo a minha partida.
-- Se a jogada do outro chega antes de eu jogar, eu guardo mas não mostro qual foi. A tela só fala "fulano já jogou", senão daria pra escolher a jogada que ganha. As duas jogadas só aparecem juntas no resultado da rodada.
-
-### Limitações
-
-- UDP não garante entrega e o plugin não reenvia nada. Se uma mensagem se perder a partida trava e tem que clicar em Desistir.
-- Se o outro fechar o programa no meio da partida, o plugin não percebe sozinho. Também é só desistir.
-- A jogada do adversário pode chegar antes da minha e só não aparece porque a tela esconde. Alguém com uma versão modificada do plugin conseguiria ver. Dava pra resolver isso com commit-reveal (cada um manda primeiro só um hash da jogada e depois revela).
-- Não tem criptografia e ninguém confere se o `de` é de verdade quem diz ser.
+- Se a jogada do outro chega antes de eu jogar, eu guardo mas não mostro qual foi. A tela só fala "fulano já jogou", senão daria pra escolher a jogada que ganha. As duas jogadas saparecem juntas no resultado da rodada.
 
 ## Código
 
