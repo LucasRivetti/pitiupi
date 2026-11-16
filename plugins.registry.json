@@ -20,6 +20,13 @@
       "build": "ant",
       "jar": "dist/pitiupi.ping.jar",
       "menuCategory": "Social"
+    },
+    {
+      "id": "jokenpo",
+      "dir": "plugins/jokenpo",
+      "build": "ant",
+      "jar": "dist/pitiupi.jokenpo.jar",
+      "menuCategory": "Jogos"
     }
   ]
 }
