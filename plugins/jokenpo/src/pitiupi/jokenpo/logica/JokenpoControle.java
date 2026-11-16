@@ -128,7 +128,7 @@ public class JokenpoControle {
         }
         if (m.tipo == Tipo.CONVITE) {
             receberConvite(m);
-        } else if (m.partidaId.equals(partidaId)) {
+        } else if (m.partidaId.equals(partidaId) && m.de.equals(adversarioId)) {
             ouvinte.registrarNoLog("<- " + adversarioNome + ": " + m);
             switch (m.tipo) {
                 case ACEITO:
@@ -158,6 +158,9 @@ public class JokenpoControle {
     }
 
     private void receberConvite(JokenpoMensagem m) {
+        if (m.partidaId.equals(partidaId)) {
+            return; // convite repetido (o UDP pode entregar o mesmo pacote duas vezes)
+        }
         if (estaEmPartida()) {
             // já estou jogando: recuso sem mexer na partida atual
             JokenpoMensagem ocupado = new JokenpoMensagem(
@@ -174,8 +177,8 @@ public class JokenpoControle {
     }
 
     private void receberJogada(JokenpoMensagem m) {
-        if (fase != Fase.JOGANDO || m.rodada != rodada) {
-            return; // de outra rodada
+        if (fase != Fase.JOGANDO || m.rodada != rodada || m.jogada == null) {
+            return; // de outra rodada, ou sem jogada
         }
         jogadaAdversario = m.jogada;
         if (minhaJogada == null) {
